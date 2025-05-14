@@ -13,6 +13,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestOperations;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @ComponentScan(basePackages = {
@@ -20,7 +22,7 @@ import org.springframework.web.client.RestTemplate;
         "com.sneakers.store.application",
         "com.sneakers.store.domain"
 })
-public class configuration {
+public class configuration implements WebMvcConfigurer {
 
     @Bean
     public SneakersApi sneakersApiImpl(SneakersPort sneakersPort){
@@ -40,6 +42,14 @@ public class configuration {
     @Bean
     public SendEmailService sendEmailServiceImpl(SendEmailPort sendEmailPort){
         return new SendEmailServiceImpl(sendEmailPort);
+    }
+
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")  // Aplica a todas las rutas
+                .allowedOrigins("*")  // ✅ Permitir todos los orígenes
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                .allowedHeaders("*");  // ✅ Permitir todas las cabeceras
     }
 
 }
