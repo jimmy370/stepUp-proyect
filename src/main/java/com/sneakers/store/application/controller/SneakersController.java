@@ -12,7 +12,7 @@ public class SneakersController {
     @Autowired
     private SneakersApi sneakersApi;
 
-    @GetMapping
+    @PostMapping
     public SneakersResponse getSneakersByCriteria(@RequestBody RequestCriteria requestCriteria) {
         return sneakersApi.getAllSneakers(requestCriteria);
     }
