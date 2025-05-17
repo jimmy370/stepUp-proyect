@@ -5,5 +5,5 @@ import com.sneakers.store.domain.model.Order;
 
 public interface OrderPort {
 
-    void saveOrder(Order order);
+    Order saveOrder(Order order);
 }

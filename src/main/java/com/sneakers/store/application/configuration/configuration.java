@@ -53,6 +53,10 @@ public class configuration implements WebMvcConfigurer {
     public OrderService orderServiceImpl(OrderPort orderPort,CustomerPort customerPort,CustomerMapper customerMapper,InvoiceService invoiceService){
         return new OrderServiceImpl(orderPort,customerPort,customerMapper,invoiceService);
     }
+    @Bean
+    public PdfService pdfServiceImpl (){
+        return new PdfServiceImpl();
+    }
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {

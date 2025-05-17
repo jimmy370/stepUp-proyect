@@ -11,5 +11,7 @@ public interface OrderMapper {
 
     OrderEntity toOrderEntity(Order order);
 
+    Order toOrder (OrderEntity order);
+
 
 }

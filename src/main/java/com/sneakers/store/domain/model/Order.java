@@ -10,6 +10,9 @@ import java.time.LocalDateTime;
 @Data
 @Builder
 public class Order {
+
+    private Long id;
+
     private String orderId;
 
     private String idProduct;

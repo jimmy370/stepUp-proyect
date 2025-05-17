@@ -1,10 +1,12 @@
 package com.sneakers.store.domain.model;
 
+import com.sneakers.store.infraestructure.entity.OrderEntity;
 import lombok.Builder;
 import lombok.Data;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Builder
@@ -30,4 +32,6 @@ public class Customer {
     private LocalDateTime RegistrationDate;
 
     private Boolean active;
+
+    List<OrderEntity> orders;
 }

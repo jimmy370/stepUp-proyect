@@ -23,16 +23,17 @@ public class OrderServiceImpl implements OrderService{
     @Override
     public void saveOrder(String email, List<String> idProducts) {
         var customer = customerPort.getCustomer(email);
+        var idOrder = "OR-" + UUID.randomUUID().toString().substring(0, 8);
         for (String idProduct : idProducts){
             Order order = Order
                     .builder()
-                    .orderId("OR-" + UUID.randomUUID().toString().substring(0, 8))
+                    .orderId(idOrder)
                     .date(LocalDateTime.now())
                     .customer(customerMapper.toCustomerEntity(customer))
                     .idProduct(idProduct)
                     .build();
-            orderPort.saveOrder(order);
-            invoiceService.saveInvoice(order);
+                var orderSave  = orderPort.saveOrder(order);
+            invoiceService.saveInvoice(orderSave);
         }
     }
 

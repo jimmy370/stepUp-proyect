@@ -13,7 +13,7 @@ public class SendEmailController {
     private SendEmailService sendEmailService;
 
     @GetMapping("/send-mail")
-    public void sendEmail(){
-        sendEmailService.sendEmail("jimmy70zepeda@gmail.com","PRUEBA SNEAKESRS STORE","Prueba Sneakers stend up");
+    public void sendEmail() throws Exception {
+        sendEmailService.sendReceipt("jimmy70zepeda@gmail.com","PRUEBA SNEAKESRS STORE","Prueba Sneakers stend up");
     }
 }
