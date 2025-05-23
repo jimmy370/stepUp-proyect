@@ -1,5 +1,6 @@
 package com.sneakers.store.infraestructure.adapter;
 
+import com.sneakers.store.domain.dto.CustomerDto;
 import com.sneakers.store.domain.model.Customer;
 import com.sneakers.store.domain.port.CustomerPort;
 import com.sneakers.store.infraestructure.mapper.CustomerMapper;

@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -50,7 +51,13 @@ public class CustomerEntity {
     @Column(name = "activo",nullable = false)
     private Boolean active;
 
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<OrderEntity> orders;
+    @Column(name = "contraseña")
+     private String password;
+
+    @Column(name = "codigo")
+     private String codeConfirmation;
+
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<OrderEntity> orders = new ArrayList<>();
 
 }

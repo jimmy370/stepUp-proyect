@@ -1,5 +1,6 @@
 package com.sneakers.store.infraestructure.adapter;
 
+import com.sneakers.store.domain.dto.InvoiceDto;
 import com.sneakers.store.domain.model.Invoice;
 import com.sneakers.store.domain.port.InvoicePort;
 import com.sneakers.store.infraestructure.mapper.InvoiceMapper;

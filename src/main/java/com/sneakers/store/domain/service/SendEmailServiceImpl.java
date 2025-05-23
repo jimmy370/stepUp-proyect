@@ -1,6 +1,7 @@
 package com.sneakers.store.domain.service;
 
 import com.sneakers.store.domain.port.SendEmailPort;
+import jakarta.mail.MessagingException;
 
 import java.nio.charset.StandardCharsets;
 
@@ -12,7 +13,7 @@ public class SendEmailServiceImpl implements SendEmailService{
     }
 
     @Override
-    public void sendEmail(String to, String subject, String body) {
+    public void sendEmail(String to, String subject, String body) throws MessagingException {
         sendEmailPort.sendEmail(to,subject,body);
     }
 

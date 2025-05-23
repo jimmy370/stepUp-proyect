@@ -1,8 +1,13 @@
 package com.sneakers.store.application.controller;
 
+import com.sneakers.store.domain.dto.CustomerDto;
 import com.sneakers.store.domain.model.Customer;
+import com.sneakers.store.domain.model.InvoiceRequest;
+import com.sneakers.store.domain.model.InvoiceRequestdos;
 import com.sneakers.store.domain.service.CustomerService;
 import com.sneakers.store.domain.service.PdfService;
+import jakarta.mail.MessagingException;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -21,23 +26,22 @@ public class CustomerController {
     private PdfService pdfService;
 
     @PostMapping
-    public void saveCustomer(@RequestBody Customer customer){
+    public void saveCustomer(@RequestBody Customer customer) throws MessagingException {
         customerService.saveCustomer(customer);
     }
 
     @GetMapping("/get/customer-by-email")
-    public Customer getCustomer(@RequestParam("email") String email){
-        return customerService.getCustomer(email);
+    public ResponseEntity<CustomerDto> getCustomer(@RequestParam("email") String email){
+        return ResponseEntity.ok(customerService.getCustomer(email));
+    }
+    @GetMapping("/get/verify/login")
+    public ResponseEntity<Boolean> verifyLogin(@RequestParam("email") String email,@RequestParam("password") String password){
+        return ResponseEntity.ok(customerService.verifyLogin(email,password));
+    }
+    @GetMapping("/get/verify/email")
+    public ResponseEntity<Boolean> verifyEmail(@RequestParam("email") String email,@RequestParam("code") String code){
+        return ResponseEntity.ok(customerService.verifyCodeConfirmation(email,code));
     }
 
-    @GetMapping("/factura/descargar")
-    public ResponseEntity<byte[]> descargarFacturaPdf() throws Exception {
-        byte[] pdfBytes = pdfService.generarFacturaPdf("1234", "Juan Pérez", "2025-05-17", "Compra de productos", 150.75);
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_PDF);
-        headers.setContentDispositionFormData("attachment", "factura.pdf"); // Nombre del archivo
-
-        return new ResponseEntity<>(pdfBytes, headers, HttpStatus.OK);
-    }
 }

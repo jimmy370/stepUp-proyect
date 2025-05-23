@@ -1,5 +1,6 @@
 package com.sneakers.store.application.controller;
 
+import com.sneakers.store.domain.model.DetailsOrder;
 import com.sneakers.store.domain.model.Order;
 import com.sneakers.store.domain.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ public class OrderController {
     private OrderService orderService;
 
     @PostMapping
-    public void saveOrder(@RequestParam("email") String email, @RequestBody List<String> idProducts){
-        orderService.saveOrder(email,idProducts);
+    public void saveOrder(@RequestParam("email") String email, @RequestBody List<DetailsOrder> detailsOrders) throws Exception {
+        orderService.saveOrder(email,detailsOrders);
     }
 }

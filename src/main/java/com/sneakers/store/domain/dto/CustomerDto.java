@@ -1,41 +1,24 @@
-package com.sneakers.store.domain.model;
+package com.sneakers.store.domain.dto;
 
-import com.sneakers.store.infraestructure.entity.OrderEntity;
-import lombok.Builder;
+
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
-
 @Data
-@Builder
-public class Customer {
-    private Long id;
-
+public class CustomerDto {
     private String name;
-
-    private String lastName;
-
     private String email;
-
+    private String lastName;
     private String phone;
-
     private String address;
-
     private String city;
-
     private String postalCode;
-
     private LocalDate birthdate;
-
-    private LocalDateTime RegistrationDate;
-
-    private Boolean active;
-
+    private LocalDateTime registrationDate;
     private String password;
-
     private String codeConfirmation;
-
-    List<Order> orders;
+    private List<OrderDto> orders;
 }

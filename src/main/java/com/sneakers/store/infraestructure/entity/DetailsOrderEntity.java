@@ -2,27 +2,29 @@ package com.sneakers.store.infraestructure.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "detalle_pedidos")
-@Data
+@Getter
+@Setter
 public class DetailsOrderEntity {
     @Id
-    @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "id_producto", nullable = false, length = 150)
-    private String idProduct;
-
-    @Column(nullable = false)
+    @Column(name = "cantidad", nullable = false)
     private Integer amount;
 
-    @Column(nullable = false)
+    @Column(name = "precio", nullable = false)
     private Double price;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_id", nullable = false)
+    @JoinColumn(name = "pedido_id", nullable = false)
     private OrderEntity order;
 
+    // Si tienes entidad Producto, reemplaza este String por una relación
+    @Column(name = "codigo_producto", nullable = false, length = 150)
+    private String productCode;
 }

@@ -1,6 +1,12 @@
 package com.sneakers.store.domain.service;
 
-public interface PdfService {
+import com.sneakers.store.domain.model.InvoiceRequest;
+import com.sneakers.store.domain.model.ProductItem;
 
-    byte[] generarFacturaPdf(String numeroFactura, String cliente, String fecha, String descripcion, double total) throws Exception;
+import java.io.OutputStream;
+import java.util.List;
+
+public interface PdfService {
+    byte[] generateInvoice(String invoiceNo, String issueDate, String clientName, String clientAddress,
+                           List<ProductItem> products) throws Exception;
 }
